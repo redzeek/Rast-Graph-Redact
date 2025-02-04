@@ -74,6 +74,8 @@ class risovalka:
         text_size_slider.pack(side=tk.LEFT, padx=5, pady=5)
 
     def set_shape(self, shape, button=None):
+        if self.current_shape == "text":
+            self.canvas.bind("<Button-1>", self.start_draw)
         self.current_shape = shape
         self.set_active_button(button)
 
@@ -197,7 +199,7 @@ class risovalka:
         self.set_shape(shape, button)
 
     def place_text(self, event):
-        # Удаляем предыдущее поле ввода, если оно существует (на будущее)
+        # Удаляем предыдущее поле ввода, если оно существует
         if hasattr(self, "text_entry") and self.text_entry:
             self.text_entry.destroy()
 
